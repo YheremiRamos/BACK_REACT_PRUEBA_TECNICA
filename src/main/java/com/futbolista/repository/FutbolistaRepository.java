@@ -8,11 +8,14 @@ import java.util.List;
 
 public interface FutbolistaRepository extends JpaRepository<futbolista, Integer>{
 	
-	public abstract List<futbolista> findByOrderByNombresAsc();
 	
-
-    // Método para listar futbolistas por id exacto
+    //SELECT
+	// Método para listar futbolistas por id exacto
     @Query("select f from futbolista f where f.id = ?1")
     public abstract List<futbolista> listaPorIdIgual(int id);
 	
+  //UPDATE
+  	@Query("select e from futbolista e where e.nombres = ?1 and e.apellidos = ?2 and e.id != ?3") 
+  	public abstract List<futbolista> actualizaFutbolista(String nombres, String apellidos, int id);
+    
 }

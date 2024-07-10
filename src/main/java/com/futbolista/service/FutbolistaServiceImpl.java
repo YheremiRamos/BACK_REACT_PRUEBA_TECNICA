@@ -20,13 +20,27 @@ public class FutbolistaServiceImpl implements FutbolistaService{
 	    }
 
 	    @Override
-	    public List<futbolista> buscarFutbolistaPorId(Integer id) {
+	    public List<futbolista> buscarFutbolistaPorId(int id) {
 	        return futbolistaRepository.listaPorIdIgual(id);
 	    }
 
 		@Override
-		public List<futbolista> getFutbolistasOrdenadosPorNombres() {
-			return futbolistaRepository.findByOrderByNombresAsc();
+		public futbolista registraFutbolista(futbolista obj) {
+			return futbolistaRepository.save(obj);
 		}
+
+
+
+		@Override
+		public void eliminaFutbolista(int id) {
+			futbolistaRepository.deleteById(id);
+		}
+
+		@Override
+		public futbolista actualizaFutbolista(futbolista obj) {
+			return futbolistaRepository.save(obj);
+		}
+
+
 
 }
