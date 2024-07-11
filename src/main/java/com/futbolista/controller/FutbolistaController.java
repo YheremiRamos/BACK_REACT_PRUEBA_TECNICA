@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.futbolista.entity.futbolista;
+import com.futbolista.entity.posicion;
 import com.futbolista.service.FutbolistaService;
+import com.futbolista.service.PosicionService;
 import com.futbolista.util.AppSettings;
 
 @RestController
@@ -28,6 +30,18 @@ public class FutbolistaController {
 
 	@Autowired
 	private FutbolistaService futbolistaService;
+	
+	
+	@Autowired
+	private PosicionService posicionService;
+	
+	//Obtener la posicion de los futbolistas
+	@GetMapping("/posiciones")
+	@ResponseBody
+    public List<posicion> listarPosiciones() {
+        return posicionService.listarPosiciones();
+    }
+	
 	
 	//Listado de todos los futbolistas
     @GetMapping
@@ -54,7 +68,7 @@ public class FutbolistaController {
 			   if (objSalida == null) {
 		            salida.put("mensaje", "Ocurrió un error al registrar");
 		        } else {
-		            salida.put("mensaje", "Se registró exitosamente el Autor " + "'" + objSalida.getNombres() + " " 
+		            salida.put("mensaje", "Se registró exitosamente el futbolista " + "'" + objSalida.getNombres() + " " 
 		                + obj.getApellidos() + "'" + " ID asignado: " + objSalida.getId());
 		        }
 	    	
