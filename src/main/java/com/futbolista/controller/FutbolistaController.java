@@ -83,23 +83,22 @@ public class FutbolistaController {
     @PutMapping("/actualizaFutbolista")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> actualizaFutbolista(@RequestBody futbolista obj){
-	    Map<String, Object> salida = new HashMap<>();
+        Map<String, Object> salida = new HashMap<>();
 
-	    try {
-	    	futbolista objSalida = futbolistaService.actualizaFutbolista(obj);
-	    	  if (objSalida == null) {
-		            salida.put("mensaje", AppSettings.MENSAJE_ACT_ERROR);
-		        } else {
-		            salida.put("mensaje", AppSettings.MENSAJE_ACT_EXITOSO);
-		        }
-	    	
-		} catch (Exception e) {
-	        e.printStackTrace();
-	        salida.put("mensaje", AppSettings.MENSAJE_ACT_ERROR);
-		}
-	    return ResponseEntity.ok(salida);
+        try {
+            futbolista objSalida = futbolistaService.actualizaFutbolista(obj);
+            if (objSalida == null) {
+                salida.put("mensaje", AppSettings.MENSAJE_ACT_ERROR);
+            } else {
+                salida.put("mensaje", AppSettings.MENSAJE_ACT_EXITOSO);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            salida.put("mensaje", AppSettings.MENSAJE_ACT_ERROR);
+        }
+        return ResponseEntity.ok(salida);
     }
-    
+
     
     //Eliminar futbolista
     @DeleteMapping("/eliminaFutbolista/{id}")
